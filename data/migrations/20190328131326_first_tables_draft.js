@@ -24,7 +24,7 @@ exports.up = function(knex, Promise) {
         .notNullable()
         .references('id')
         .inTable('dishes')
-        // mannualy in your code, first delete all recipes for the dish, then delete the dish
+        // using RESTRICT, in your code, first delete all recipes for the dish, then delete the dish
         .onDelete('RESTRICT') 
         .onUpdate('CASCADE');
     })
@@ -62,6 +62,6 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  
+
   
 };
