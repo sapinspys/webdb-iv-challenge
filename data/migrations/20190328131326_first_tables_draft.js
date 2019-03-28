@@ -62,6 +62,10 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-
-  
+  // tables with FK must be removed before the referenced table is removed
+  return knex.schema
+    .dropTableIfExists('cohort_students')
+    .dropTableIfExists('students')
+    .dropTableIfExists('cohorts')
+    .dropTableIfExists('tracks');
 };
