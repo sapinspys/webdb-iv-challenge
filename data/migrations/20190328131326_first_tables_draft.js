@@ -23,8 +23,8 @@ exports.up = function(knex, Promise) {
         .notNullable()
         .references("id")
         .inTable("dishes")
-        // using RESTRICT, in your code, first delete all recipes for the dish, then delete the dish
-        .onDelete("CASCADE")
+        // using RESTRICT, first delete all recipes for the dish, then delete the dish
+        .onDelete("RESTRICT")
         .onUpdate("CASCADE");
     })
 
@@ -43,7 +43,7 @@ exports.up = function(knex, Promise) {
         .notNullable()
         .references("id")
         .inTable("recipes")
-        .onDelete("CASCADE")
+        .onDelete("RESTRICT")
         .onUpdate("CASCADE");
 
       tbl
@@ -52,7 +52,7 @@ exports.up = function(knex, Promise) {
         .notNullable()
         .references("id")
         .inTable("ingredients")
-        .onDelete("CASCADE")
+        .onDelete("RESTRICT")
         .onUpdate("CASCADE");
     });
 };

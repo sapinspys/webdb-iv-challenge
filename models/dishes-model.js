@@ -19,9 +19,4 @@ function getDish(id) {
   return db("dishes")
     .where({ id })
     .first();
-
-  // return db("dishes")
-  //   .leftJoin("recipes", "dishes.id", "recipes.dish_id")
-  //   .where({ id })
-  //   .first();
 }

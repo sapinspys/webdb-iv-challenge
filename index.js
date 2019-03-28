@@ -36,9 +36,10 @@ server.post('/api/dishes', async (req, res) => {
 // list a dish by id
 server.get('/api/dishes/:id', async (req, res) => {
   try {
-    const dish = await dishes.getDish(req.params.id);
+    let dish = await dishes.getDish(req.params.id);
+    const dishRecipes = await recipes.getRecipesByDish(req.params.id);
+    dish.recipes = dishRecipes;
     if (dish) {
-      // const dishRecipes = await recipes.getRecipesOfDish(req.params.id);
       res.status(200).json(dish);
     } else {
       res.status(404).json({ error: "Dish not found." })
