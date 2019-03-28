@@ -8,14 +8,12 @@ module.exports = {
       filename: './data/recipe_book.sqlite3'
     },
     useNullAsDefault: true,
-  },
-
-  migrations: {
-    directiory: './data/migrations'
-  },
-
-  seeds: {
-    directiory: './data/seeds'
+    migrations: {
+      directiory: './data/migrations'
+    },
+    seeds: {
+      directiory: './data/seeds'
+    }
   }
 
 };
