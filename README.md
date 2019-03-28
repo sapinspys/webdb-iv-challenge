@@ -14,22 +14,22 @@ Design the **data model** for a _recipe book_ application, then use `Knex migrat
 ### Data Model
 
 1. Identify the entities (tables):
-- DISH
-- RECIPE
-- RECIPE/INGREDIENTS
+- DISHES
+- RECIPES
+- RECIPES/INGREDIENTS
 - INGREDIENTS
 
 2. Identify the attributes (columns):
-- DISH (ie. tacos)
+- DISHES (ie. tacos)
   - id: int, pk, autoinc
   - name: varchar, unique, not null
 
-- RECIPE
+- RECIPES
   - id: int, pk, autoinc
   - name: varchar, unique, not null
   - dish_id: int, FK refs id in dishes
 
-- RECIPE/INGREDIENTS
+- RECIPES/INGREDIENTS
   - id: int, pk, autoinc
   - recipe_id: int, FK refs id in recipes
   - ingredient_id: int, FK refs id in ingredients
