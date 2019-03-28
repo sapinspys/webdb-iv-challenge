@@ -11,7 +11,7 @@ function getDishes() {
 }
 
 function addDish(dish) {
-  return db("roles")
+  return db("dishes")
     .insert(dish);
 }
 
