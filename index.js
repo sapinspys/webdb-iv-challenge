@@ -26,7 +26,7 @@ server.post('/api/dishes', async (req, res) => {
       const dish_id = await dishes.addDish(req.body);
       res.status(201).json(dish_id[0]);
     } else {
-      res.status(400).json({ error: "Please add a dish name."}) 
+      res.status(400).json({ error: "Please add a dish name." }) 
     }
   } catch (error) {
     res.status(500).json(error);
@@ -40,7 +40,7 @@ server.get('/api/dishes/:id', async (req, res) => {
     if (dish) {
       res.status(200).json(dish);
     } else {
-      res.status(404).json({ error: "Dish not found."})
+      res.status(404).json({ error: "Dish not found." })
     }
   } catch (error) {
     res.status(500).json(error);
@@ -64,7 +64,21 @@ server.post('/api/recipes', async (req, res) => {
       const recipe_id = await recipes.addRecipe(req.body);
       res.status(201).json(recipe_id[0]);
     } else {
-      res.status(400).json({ error: "Please add a recipe and dish ID name."}) 
+      res.status(400).json({ error: "Please add a recipe and dish ID name." }) 
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// list a recipe by id
+server.get('/api/recipes/:id', async (req, res) => {
+  try {
+    const recipe = await recipes.getRecipe(req.params.id);
+    if (recipe) {
+      res.status(200).json(recipe);
+    } else {
+      res.status(404).json({ error: "Recipe not found." })
     }
   } catch (error) {
     res.status(500).json(error);
