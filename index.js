@@ -38,6 +38,7 @@ server.get('/api/dishes/:id', async (req, res) => {
   try {
     const dish = await dishes.getDish(req.params.id);
     if (dish) {
+      // const dishRecipes = await recipes.getRecipesOfDish(req.params.id);
       res.status(200).json(dish);
     } else {
       res.status(404).json({ error: "Dish not found." })
