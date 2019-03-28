@@ -63,6 +63,8 @@ In addition to the `migrations` and `seeding` scripts, write a data access file 
 
 Organize and name your files anyway you see fit.
 
+Done!
+
 ## Stretch Problems
 
 - design and build a RESTful API that makes use of your data access file and publishes endpoints that a client application can use to manage all resources.
