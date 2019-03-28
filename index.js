@@ -1,8 +1,8 @@
 const express = require('express');
 const helmet = require('helmet');
 
-const dishes = require('./dishes/dishes-model.js');
-const recipes = require('./dishes/recipes-model.js');
+const dishes = require('./models/dishes-model.js');
+const recipes = require('./models/recipes-model.js');
 
 const server = express();
 
@@ -22,9 +22,12 @@ server.get('/api/dishes', async (req, res) => {
 // create dishes
 server.post('/api/dishes', async (req, res) => {
   try {
-    const dish_id = await dishes.addDish(req.body);
-    const dish = await dishes.getDish(dish_id);
-    res.status(201).json(dish);
+    if (req.body.name) {
+      const dish_id = await dishes.addDish(req.body);
+      res.status(201).json(dish_id[0]);
+    } else {
+      res.status(400).json({ error: "Please add a dish name."}) 
+    }
   } catch (error) {
     res.status(500).json(error);
   }
@@ -34,7 +37,11 @@ server.post('/api/dishes', async (req, res) => {
 server.get('/api/dishes/:id', async (req, res) => {
   try {
     const dish = await dishes.getDish(req.params.id);
-    res.status(200).json(dish);
+    if (dish) {
+      res.status(200).json(dish);
+    } else {
+      res.status(404).json({ error: "Dish not found."})
+    }
   } catch (error) {
     res.status(500).json(error);
   }
@@ -53,9 +60,12 @@ server.get('/api/recipes', async (req, res) => {
 // create recipe
 server.post('/api/recipes', async (req, res) => {
   try {
-    const recipe_id = await recipes.addRecipe(req.body);
-    const recipe = await recipes.getRecipes(recipe_id);
-    res.status(201).json(recipe);
+    if (req.body.name && req.body.dish_id) {
+      const recipe_id = await recipes.addRecipe(req.body);
+      res.status(201).json(recipe_id[0]);
+    } else {
+      res.status(400).json({ error: "Please add a recipe and dish ID name."}) 
+    }
   } catch (error) {
     res.status(500).json(error);
   }
