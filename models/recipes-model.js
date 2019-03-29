@@ -5,6 +5,7 @@ module.exports = {
   addRecipe,
   getRecipe,
   getRecipesByDish,
+  getIngredientsByRecipe,
 };
 
 function getRecipes() {
@@ -25,4 +26,9 @@ function getRecipe(id) {
 function getRecipesByDish(id) {
   return db("recipes")
     .where({ dish_id: id })
+}
+
+function getIngredientsByRecipe(id) {
+  return db("recipe_ingredients")
+    .where({ recipe_id: id })
 }
