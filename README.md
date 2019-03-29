@@ -34,12 +34,12 @@ Design the **data model** for a _recipe book_ application, then use `Knex migrat
   - id: int, pk, autoinc
   - recipe_id: int, FK refs id in recipes
   - ingredient_id: int, FK refs id in ingredients
+  - quantity: int, not null
   - also needs a CONSTRAINT for duplicates...
 
 - INGREDIENTS
   - id: int, pk, autoinc
   - name: varchar
-  - quantity: int, not null
 
 3. Identify the relationships:
 - DISH <> RECIPES (one to many)
@@ -50,7 +50,7 @@ Design the **data model** for a _recipe book_ application, then use `Knex migrat
 - have a way to manage dishes. A **dish** is something the client wants to cook, like _pizza_ or _tacos_.
 - have a way to manage recipes. A **dish** can have different recipes for tacos, like _tex-mex_ or _granny's_. A **recipe** belongs only to one **dish**.
 - have a way to manage ingredients.
-<!-- - a **recipe** could have more than one **ingredient** and the same **ingredient** can be used in multiple recipes. Examples are _"cup of corn flour"_ or _"gram of butter"_. -->
+- a **recipe** could have more than one **ingredient** and the same **ingredient** can be used in multiple recipes. Examples are _"cup of corn flour"_ or _"gram of butter"_.
 <!-- - when saving the ingredients for a **recipe** capture the quantity required for that **ingredient** as a floating number. -->
 <!-- - have a way to save instructions for cooking a recipe. -->
 <!-- - have a way to pick a **dish** and a **recipe** and get a _shopping list_ with all the ingredients, and quantity of each, needed to cook the **dish**. -->

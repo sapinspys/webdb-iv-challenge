@@ -56,10 +56,9 @@ exports.up = function(knex, Promise) {
         .onUpdate("CASCADE");
 
       tbl
-        .integer("quantity")
+        .float("quantity")
         .unsigned()
-        .notNullable()
-
+        .notNullable();
     });
 };
 
