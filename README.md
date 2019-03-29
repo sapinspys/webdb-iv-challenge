@@ -11,7 +11,41 @@
 
 Design the **data model** for a _recipe book_ application, then use `Knex migrations and seeding` functionality to build a `SQLite3` database based on the model and seed it with test data.
 
-The requirements for the system, as stated by the client are:
+### Data Model
+
+1. Identify the entities (tables):
+- DISHES
+- RECIPES
+- RECIPES/INGREDIENTS
+- INGREDIENTS
+
+2. Identify the attributes (columns):
+- DISHES (ie. tacos)
+  - id: int, pk, autoinc
+  - name: varchar, unique, not null
+
+- RECIPES
+  - id: int, pk, autoinc
+  - name: varchar, unique, not null
+  - dish_id: int, FK refs id in dishes
+  - instructions: text
+
+- RECIPES/INGREDIENTS
+  - id: int, pk, autoinc
+  - recipe_id: int, FK refs id in recipes
+  - ingredient_id: int, FK refs id in ingredients
+  - quantity: int, not null
+  - also needs a CONSTRAINT for duplicates...
+
+- INGREDIENTS
+  - id: int, pk, autoinc
+  - name: varchar
+
+3. Identify the relationships:
+- DISH <> RECIPES (one to many)
+- RECIPES <> INGREDIENTS (many to many? needs a third table?)
+
+### System Requirements
 
 - have a way to manage dishes. A **dish** is something the client wants to cook, like _pizza_ or _tacos_.
 - have a way to manage recipes. A **dish** can have different recipes for tacos, like _tex-mex_ or _granny's_. A **recipe** belongs only to one **dish**.
@@ -30,6 +64,8 @@ In addition to the `migrations` and `seeding` scripts, write a data access file 
 - `addRecipe(recipe)`: should add a **recipe** to the database and return the `id` of the new **recipe**.
 
 Organize and name your files anyway you see fit.
+
+ACTUALLY DONE!
 
 ## Stretch Problems
 
