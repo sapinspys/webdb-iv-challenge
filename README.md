@@ -39,7 +39,7 @@ Design the **data model** for a _recipe book_ application, then use `Knex migrat
 - INGREDIENTS
   - id: int, pk, autoinc
   - name: varchar
-  - quantity: int
+  - quantity: int, not null
 
 3. Identify the relationships:
 - DISH <> RECIPES (one to many)
