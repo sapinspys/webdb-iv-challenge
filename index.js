@@ -77,6 +77,8 @@ server.post('/api/recipes', async (req, res) => {
 server.get('/api/recipes/:id', async (req, res) => {
   try {
     const recipe = await recipes.getRecipe(req.params.id);
+    const ingredients = await recipes.getIngredientsByRecipe(req.params.id);
+    recipe.ingredients = ingredients;
     if (recipe) {
       res.status(200).json(recipe);
     } else {
