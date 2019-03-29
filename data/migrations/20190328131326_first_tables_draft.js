@@ -26,6 +26,10 @@ exports.up = function(knex, Promise) {
         // using RESTRICT, first delete all recipes for the dish, then delete the dish
         .onDelete("RESTRICT")
         .onUpdate("CASCADE");
+
+      tbl
+        .text("instructions")
+        .notNullable();
     })
 
     .createTable("ingredients", tbl => {
